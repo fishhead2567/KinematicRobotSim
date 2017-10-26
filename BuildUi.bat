@@ -1,0 +1,1 @@
+pyuic5 KinematicViewOnlyVis.ui > KinematicViewOnly_qt.py
