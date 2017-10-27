@@ -50,8 +50,10 @@ class KinematicViewOnlyGui(QtWidgets.QMainWindow):
         # populate the scene
         for entity in self.entities:
             entity.CreateGraphicsItems(self.centerPx, self.ppm)
-            for item in entity.graphics_items:
-                self.scene.addItem(item)
+            if entity.base_shape is not None:
+                self.scene.addItem(entity.base_shape)
+            for item in entity.sub_shapes:
+                self.scene.addItem(item.item)
 
 
         # setup the keyboard event filter
@@ -116,8 +118,8 @@ def main():
     ppm = 50.0
     centerPx = np.array((320,200))
 
-    #om = QtOmniModel(1)
-    #models.append(om)
+    # om = QtOmniModel(1)
+    # models.append(om)
 
     by = QtBicycleModel(1, .5)
     models.append(by)
